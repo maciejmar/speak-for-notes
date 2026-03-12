@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1a1a2e"/>
+  <!-- Tło gradientowe -->
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#5c5ccc" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0f0f1a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#g)"/>
+  <!-- Mikrofon -->
+  <rect x="200" y="100" width="112" height="192" rx="56" fill="#7c7cff"/>
+  <!-- Podstawa mikrofonu -->
+  <path d="M152 260 C152 340 360 340 360 260" stroke="#7c7cff" stroke-width="24" fill="none" stroke-linecap="round"/>
+  <line x1="256" y1="340" x2="256" y2="400" stroke="#7c7cff" stroke-width="24" stroke-linecap="round"/>
+  <line x1="196" y1="400" x2="316" y2="400" stroke="#7c7cff" stroke-width="24" stroke-linecap="round"/>
+  <!-- Fale dźwiękowe -->
+  <circle cx="256" cy="250" r="140" fill="none" stroke="#7c7cff" stroke-width="8" stroke-opacity="0.3"/>
+  <circle cx="256" cy="250" r="175" fill="none" stroke="#7c7cff" stroke-width="6" stroke-opacity="0.15"/>
+</svg>

@@ -1,0 +1,119 @@
+.calendar-wrap {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ce93d8;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(206, 147, 216, 0.2);
+
+  mat-icon { color: #ce93d8; }
+}
+
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #555580;
+  padding: 32px 16px;
+  text-align: center;
+
+  mat-icon { font-size: 48px; width: 48px; height: 48px; }
+  p { font-size: 0.85rem; margin: 0; line-height: 1.6; }
+}
+
+.event-card {
+  border-left: 3px solid #ce93d8 !important;
+  border-radius: 8px !important;
+
+  mat-card-content { padding: 12px !important; }
+}
+
+.event-top {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.event-date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(206, 147, 216, 0.1);
+  border: 1px solid rgba(206, 147, 216, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  min-width: 52px;
+}
+
+.event-day {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ce93d8;
+  line-height: 1;
+}
+
+.event-month {
+  font-size: 0.65rem;
+  color: #9090b8;
+  letter-spacing: 1px;
+}
+
+.event-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e0e0f0;
+}
+
+.event-time,
+.event-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9090b8;
+
+  mat-icon { font-size: 14px; }
+}
+
+.event-desc {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  color: #7070a0;
+  font-style: italic;
+}
+
+.event-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #444465;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-family: monospace;
+}

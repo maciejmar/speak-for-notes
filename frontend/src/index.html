@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <title>Notatnik Głosowy</title>
+  <base href="/">
+
+  <!-- Viewport – mobile first, blokuj zoom (voice app) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  <!-- PWA – Theme & Status bar -->
+  <meta name="theme-color" content="#7c7cff">
+
+  <!-- PWA – iOS specifics -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Notatnik">
+  <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+
+  <!-- PWA – manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- App metadata -->
+  <meta name="description" content="Inteligentny głosowy notatnik AI – zapisuj notatki i rozmawiaj z asystentem">
+  <meta name="application-name" content="Notatnik Głosowy">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Ikona -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+
+  <!-- Fonty -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    /* Splash screen zanim Angular się załaduje */
+    body { margin: 0; background: #0f0f1a; }
+    .app-loading {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #0f0f1a; gap: 24px;
+    }
+    .app-loading svg { animation: spin 1.5s linear infinite; }
+    .app-loading p {
+      color: #7c7cff; font-family: Inter, sans-serif;
+      font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="mat-app-background">
+  <app-root>
+    <!-- Splash screen widoczny zanim Angular się załaduje -->
+    <div class="app-loading">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="28" stroke="#2d2d4e" stroke-width="4"/>
+        <circle cx="32" cy="32" r="28" stroke="#7c7cff" stroke-width="4"
+          stroke-dasharray="88 176" stroke-linecap="round"/>
+      </svg>
+      <p>Notatnik Głosowy</p>
+    </div>
+  </app-root>
+</body>
+</html>

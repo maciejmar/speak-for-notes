@@ -1,0 +1,75 @@
+/* ── Global styles ── */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  /* Używaj 100svh zamiast 100vh na mobile (dynamic viewport, uwzględnia pasek przeglądarki) */
+  height: 100svh;
+  margin: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background: #0f0f1a;
+  color: #e8e8f0;
+  -webkit-font-smoothing: antialiased;
+  /* Zapobiegaj nadmiernemu scrollowaniu na iOS (rubber-band effect) */
+  overscroll-behavior: none;
+}
+
+/* ── PWA: Safe area (iPhone notch / Dynamic Island / home indicator) ── */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* Gdy app działa standalone – dodaj padding dla safe area */
+@media (display-mode: standalone) {
+  .app-shell {
+    padding-top: var(--safe-top);
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #3d3d6b;
+  border-radius: 3px;
+}
+
+/* ── Material overrides ── */
+.mat-mdc-card {
+  background: #1a1a2e !important;
+  border: 1px solid #2d2d4e !important;
+}
+
+.mat-mdc-chip {
+  cursor: pointer;
+}
+
+/* ── Animations ── */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(2); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
+}

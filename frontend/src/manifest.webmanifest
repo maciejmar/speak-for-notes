@@ -1,0 +1,41 @@
+{
+  "name": "Notatnik Głosowy AI",
+  "short_name": "Notatnik",
+  "description": "Inteligentny asystent głosowy – zapisuj notatki i rozmawiaj z AI",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#0f0f1a",
+  "theme_color": "#7c7cff",
+  "lang": "pl",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Zapisz notatkę",
+      "short_name": "Zapisz",
+      "description": "Szybko nagraj nową notatkę",
+      "url": "/?action=record",
+      "icons": [{ "src": "assets/icons/icon.svg", "sizes": "any" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false,
+  "handle_links": "preferred"
+}

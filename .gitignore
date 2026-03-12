@@ -1,0 +1,47 @@
+# --- Systemowe ---
+.DS_Store
+Thumbs.db
+
+# --- IDE (Visual Studio Code, PyCharm, WebStorm) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- BACKEND (Python / FastAPI / Poetry) ---
+backend/.venv/
+backend/venv/
+backend/env/
+backend/build/
+backend/dist/
+backend/eggs/
+backend/.eggs/
+backend/*.egg-info/
+backend/__pycache__/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.env
+# UWAGA: poetry.lock POWINIEN być śledzony w Git
+
+# --- FRONTEND (Angular) ---
+frontend/node_modules/
+frontend/dist/
+frontend/tmp/
+frontend/out-tsc/
+frontend/bazel-out/
+frontend/.angular/
+frontend/.cache/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/coverage/
+frontend/.env
+
+# --- Inne ---
+.terraform/
+docker-compose.override.yml
+
+.env
+.env.example
