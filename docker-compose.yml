@@ -3,8 +3,6 @@ services:
     image: qdrant/qdrant:latest
     container_name: notebook-qdrant
     restart: unless-stopped
-    ports:
-      - "6333:6333"
     volumes:
       - qdrant_storage:/qdrant/storage
 
