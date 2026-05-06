@@ -17,7 +17,9 @@ export class WebSocketService implements OnDestroy {
   connect(): void {
     if (this.socket?.readyState === WebSocket.OPEN) return;
 
-    this.socket = new WebSocket(environment.wsUrl);
+    const wsUrl = environment.wsUrl ||
+      `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws`;
+    this.socket = new WebSocket(wsUrl);
 
     this.socket.onopen = () => {
       this.connected$.next(true);
