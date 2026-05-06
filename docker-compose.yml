@@ -32,7 +32,7 @@ services:
     container_name: notebook-frontend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8090:80"
     depends_on:
       - backend
 
