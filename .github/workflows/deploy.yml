@@ -8,7 +8,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to server via SSH
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Sync files to server
+        run: |
+          rsync -az --delete \
+            --exclude='.env' \
+            --exclude='data/' \
+            --exclude='.git/' \
+            -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/deploy_key" \
+            . \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/speak-for-notes/
+
+      - name: Deploy
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -17,6 +37,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/speak-for-notes
-            git pull origin dev
             docker compose up --build -d
             docker image prune -f
