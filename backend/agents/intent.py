@@ -61,7 +61,7 @@ async def classify_intent(state: NotebookState) -> dict:
             model=await get_ollama_model(),
             base_url=settings.ollama_base_url,
             temperature=0,
-        ).with_structured_output(IntentResult)
+        ).with_structured_output(IntentResult, method="json_schema")
 
         messages = [
             SystemMessage(content=_SYSTEM_PROMPT),
