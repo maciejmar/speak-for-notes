@@ -31,8 +31,7 @@ async def init_mcp_tools() -> MultiServerMCPClient:
     """Uruchom klient MCP i załaduj narzędzia. Wywołaj przy starcie FastAPI."""
     global _mcp_client, _tools
 
-    client = MultiServerMCPClient(get_mcp_server_config())
-    _mcp_client = await client.__aenter__()
+    _mcp_client = MultiServerMCPClient(get_mcp_server_config())
     tools_list: list[BaseTool] = await _mcp_client.get_tools()
     _tools = {tool.name: tool for tool in tools_list}
 
@@ -40,14 +39,10 @@ async def init_mcp_tools() -> MultiServerMCPClient:
 
 
 async def close_mcp_client() -> None:
-    """Zamknij klient MCP przy zatrzymaniu aplikacji."""
-    global _mcp_client
-    if _mcp_client:
-        try:
-            await _mcp_client.__aexit__(None, None, None)
-        except Exception:
-            pass
+    """Wyczyść referencję klienta MCP przy zatrzymaniu aplikacji."""
+    global _mcp_client, _tools
     _mcp_client = None
+    _tools = {}
 
 
 def get_tool(name: str) -> BaseTool | None:
