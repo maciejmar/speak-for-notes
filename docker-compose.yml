@@ -6,6 +6,16 @@ services:
     volumes:
       - qdrant_storage:/qdrant/storage
 
+  ollama-proxy:
+    image: alpine/socat
+    container_name: notebook-ollama-proxy
+    restart: unless-stopped
+    network_mode: host
+    # Nasłuchuje TYLKO na adresie mostka Dockera (nieroutowalny z zewnątrz),
+    # przekazuje do Ollamy, która pozostaje zbindowana wyłącznie do 127.0.0.1
+    # (żeby nie zmieniać widoczności Ollamy dla innych aplikacji na serwerze).
+    command: TCP-LISTEN:11434,bind=172.17.0.1,fork,reuseaddr TCP:127.0.0.1:11434
+
   backend:
     build:
       context: .
@@ -15,11 +25,12 @@ services:
     env_file: .env
     environment:
       QDRANT_HOST: qdrant
-      OLLAMA_BASE_URL: http://host.docker.internal:11435
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
       HOST: 0.0.0.0
       PORT: 8000
     depends_on:
       - qdrant
+      - ollama-proxy
     volumes:
       - ./data:/app/data
     extra_hosts:
