@@ -7,7 +7,7 @@ Używa narzędzia MCP web_search do wyszukiwania informacji.
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from backend.agents.ollama_utils import get_ollama_model
+from backend.agents.ollama_utils import get_fallback_llm, get_ollama_model
 from backend.agents.tools_registry import get_tool
 from backend.config import settings
 from backend.graph.state import NotebookState
@@ -39,11 +39,12 @@ async def research_topic(state: NotebookState) -> dict:
         )
 
         # Streść wyniki przez Claude
-        llm = ChatOllama(
+        primary = ChatOllama(
             model=await get_ollama_model(),
             base_url=settings.ollama_base_url,
             temperature=0.3,
         )
+        llm = primary.with_fallbacks([get_fallback_llm(temperature=0.3)])
 
         messages = [
             SystemMessage(content=_SYSTEM_PROMPT),

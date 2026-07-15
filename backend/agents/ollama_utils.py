@@ -5,6 +5,7 @@ zainstalowany, a jeśli nie, używa dostępnego zamiennika zamiast wywalać bł�
 import logging
 
 import httpx
+from langchain_openai import ChatOpenAI
 
 from backend.config import settings
 
@@ -50,3 +51,12 @@ async def get_ollama_model() -> str:
     )
     _resolved_model = fallback
     return _resolved_model
+
+
+def get_fallback_llm(temperature: float = 0) -> ChatOpenAI:
+    """Tani model API (OpenAI) używany, gdy lokalna Ollama zawiedzie."""
+    return ChatOpenAI(
+        model=settings.fallback_model,
+        api_key=settings.openai_api_key,
+        temperature=temperature,
+    )

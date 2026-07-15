@@ -12,6 +12,9 @@ class Settings(BaseSettings):
     ollama_base_url: str = "http://localhost:11434"
     ollama_model: str = "llama3.2"
 
+    # Fallback (gdy Ollama zawiedzie – błąd połączenia, brak modelu, timeout)
+    fallback_model: str = "gpt-4o-mini"
+
     # Qdrant
     qdrant_host: str = "localhost"
     qdrant_port: int = 6333

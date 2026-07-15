@@ -11,7 +11,7 @@ from gtts import gTTS
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from backend.agents.ollama_utils import get_ollama_model
+from backend.agents.ollama_utils import get_fallback_llm, get_ollama_model
 from backend.config import settings
 from backend.graph.state import NotebookState
 from backend.rag.retriever import get_rag_context
@@ -52,11 +52,12 @@ async def generate_response(state: NotebookState) -> dict:
         # RAG – pobierz powiązane notatki
         rag_context = await get_rag_context(state.transcription, k=4)
 
-        llm = ChatOllama(
+        primary = ChatOllama(
             model=await get_ollama_model(),
             base_url=settings.ollama_base_url,
             temperature=0.7,
         )
+        llm = primary.with_fallbacks([get_fallback_llm(temperature=0.7)])
 
         system_msg = SystemMessage(
             content=f"{_RESPOND_SYSTEM}\n\n"
