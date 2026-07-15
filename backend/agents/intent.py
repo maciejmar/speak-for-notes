@@ -11,6 +11,7 @@ Możliwe intencje:
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
+from backend.agents.ollama_utils import get_ollama_model
 from backend.config import settings
 from backend.graph.state import IntentResult, NotebookState
 
@@ -57,7 +58,7 @@ async def classify_intent(state: NotebookState) -> dict:
 
     try:
         llm = ChatOllama(
-            model=settings.ollama_model,
+            model=await get_ollama_model(),
             base_url=settings.ollama_base_url,
             temperature=0,
         ).with_structured_output(IntentResult)
