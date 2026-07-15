@@ -40,5 +40,9 @@ class Settings(BaseSettings):
     def calendar_file(self) -> Path:
         return self.data_dir / "calendar.json"
 
+    @property
+    def costs_file(self) -> Path:
+        return self.data_dir / "costs.json"
+
 
 settings = Settings()

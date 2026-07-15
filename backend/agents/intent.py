@@ -11,7 +11,7 @@ Możliwe intencje:
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from backend.agents.ollama_utils import get_fallback_llm, get_ollama_model
+from backend.agents.ollama_utils import get_ollama_model, invoke_with_fallback
 from backend.config import settings
 from backend.graph.state import IntentResult, NotebookState
 
@@ -62,15 +62,15 @@ async def classify_intent(state: NotebookState) -> dict:
             base_url=settings.ollama_base_url,
             temperature=0,
         ).with_structured_output(IntentResult, method="json_schema")
-        fallback = get_fallback_llm().with_structured_output(IntentResult)
-        llm = primary.with_fallbacks([fallback])
 
         messages = [
             SystemMessage(content=_SYSTEM_PROMPT),
             HumanMessage(content=f"Transkrypcja: {state.transcription}"),
         ]
 
-        result: IntentResult = await llm.ainvoke(messages)
+        result: IntentResult = await invoke_with_fallback(
+            primary, messages, schema=IntentResult, agent_name="intent"
+        )
 
         return {
             "intent": result.intent,

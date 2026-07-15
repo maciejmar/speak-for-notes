@@ -11,7 +11,7 @@ from gtts import gTTS
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from backend.agents.ollama_utils import get_fallback_llm, get_ollama_model
+from backend.agents.ollama_utils import get_ollama_model, invoke_with_fallback
 from backend.config import settings
 from backend.graph.state import NotebookState
 from backend.rag.retriever import get_rag_context
@@ -57,7 +57,6 @@ async def generate_response(state: NotebookState) -> dict:
             base_url=settings.ollama_base_url,
             temperature=0.7,
         )
-        llm = primary.with_fallbacks([get_fallback_llm(temperature=0.7)])
 
         system_msg = SystemMessage(
             content=f"{_RESPOND_SYSTEM}\n\n"
@@ -68,7 +67,9 @@ async def generate_response(state: NotebookState) -> dict:
         history = list(state.messages[-6:]) if state.messages else []
 
         messages = [system_msg, *history, HumanMessage(content=state.transcription)]
-        response = await llm.ainvoke(messages)
+        response = await invoke_with_fallback(
+            primary, messages, temperature=0.7, agent_name="response"
+        )
 
         return {"response_text": response.content.strip()}
 

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { CalendarEvent, NotesResponse } from '../models/notebook.models';
+import { CalendarEvent, CostSummary, NotesResponse } from '../models/notebook.models';
 
 @Injectable({ providedIn: 'root' })
 export class NotesApiService {
@@ -38,5 +38,9 @@ export class NotesApiService {
 
   getCategories(): Observable<Record<string, number>> {
     return this.http.get<Record<string, number>>(`${this.base}/api/categories`);
+  }
+
+  getCosts(): Observable<CostSummary> {
+    return this.http.get<CostSummary>(`${this.base}/api/costs`);
   }
 }

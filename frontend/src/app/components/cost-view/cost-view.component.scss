@@ -1,0 +1,102 @@
+.cost-wrap {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cost-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #a5d6a7;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(165, 214, 167, 0.2);
+
+  mat-icon { color: #a5d6a7; }
+}
+
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #555580;
+  padding: 32px 16px;
+  text-align: center;
+
+  mat-icon { font-size: 48px; width: 48px; height: 48px; color: #a5d6a7; }
+  p { font-size: 0.85rem; margin: 0; line-height: 1.6; }
+}
+
+.total-card {
+  border-left: 3px solid #a5d6a7 !important;
+  border-radius: 8px !important;
+
+  mat-card-content { padding: 14px !important; }
+}
+
+.total-amount {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #a5d6a7;
+  font-family: monospace;
+}
+
+.total-sub {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #9090b8;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6a6a90;
+  margin-top: 8px;
+}
+
+.agent-card,
+.recent-card {
+  border-radius: 8px !important;
+
+  mat-card-content { padding: 10px 12px !important; }
+}
+
+.agent-row,
+.recent-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.agent-name,
+.recent-agent {
+  font-size: 0.85rem;
+  color: #e0e0f0;
+  font-weight: 500;
+}
+
+.agent-cost,
+.recent-cost {
+  font-size: 0.85rem;
+  color: #a5d6a7;
+  font-family: monospace;
+}
+
+.agent-calls,
+.recent-meta {
+  font-size: 0.7rem;
+  color: #7070a0;
+  margin-top: 2px;
+  font-family: monospace;
+}

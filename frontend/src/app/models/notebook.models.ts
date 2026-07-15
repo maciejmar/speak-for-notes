@@ -56,6 +56,30 @@ export interface CalendarEvent {
   location?: string;
 }
 
+export interface CostEntry {
+  timestamp: string;
+  agent: string;
+  model: string;
+  input_tokens: number;
+  output_tokens: number;
+  cost_usd: number;
+}
+
+export interface CostByAgent {
+  calls: number;
+  cost_usd: number;
+}
+
+export interface CostSummary {
+  total_cost_usd: number;
+  total_calls: number;
+  total_input_tokens: number;
+  total_output_tokens: number;
+  by_agent: Record<string, CostByAgent>;
+  recent: CostEntry[];
+  model: string;
+}
+
 export const CATEGORY_CONFIG: Record<
   NoteCategory,
   { label: string; icon: string; color: string }

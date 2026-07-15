@@ -18,6 +18,7 @@ import {
 } from './components/conversation/conversation.component';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { CalendarViewComponent } from './components/calendar-view/calendar-view.component';
+import { CostViewComponent } from './components/cost-view/cost-view.component';
 import { PwaBannerComponent } from './components/pwa-banner/pwa-banner.component';
 import { AudioPlayerService } from './services/audio-player.service';
 import { VoiceService } from './services/voice.service';
@@ -37,6 +38,7 @@ import { AppStatus, WsResult } from './models/notebook.models';
     ConversationComponent,
     NotesListComponent,
     CalendarViewComponent,
+    CostViewComponent,
     PwaBannerComponent,
   ],
   template: `
@@ -86,6 +88,14 @@ import { AppStatus, WsResult } from './models/notebook.models';
               <span class="tab-label">Kalendarz</span>
             </ng-template>
             <app-calendar-view></app-calendar-view>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>payments</mat-icon>
+              <span class="tab-label">Koszty</span>
+            </ng-template>
+            <app-cost-view></app-cost-view>
           </mat-tab>
         </mat-tab-group>
       </div>

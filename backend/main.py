@@ -23,6 +23,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from backend.agents.ollama_utils import get_cost_summary
 from backend.agents.tools_registry import close_mcp_client, init_mcp_tools
 from backend.config import settings
 from backend.graph.notebook_graph import notebook_graph
@@ -203,6 +204,12 @@ async def api_get_categories():
     """Statystyki kategorii notatek."""
     raw = list_categories()
     return json.loads(raw)
+
+
+@app.get("/api/costs")
+async def api_get_costs():
+    """Koszty wywołań fallbackowego LLM (API), gdy lokalna Ollama zawiedzie."""
+    return get_cost_summary()
 
 
 @app.get("/health")
